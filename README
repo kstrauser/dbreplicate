@@ -1,0 +1,30 @@
+## NOTE: THIS IS OLD, UNMAINTAINED SOFTWARE!
+
+I'd been hosting this file on my personal site for years. As I still get a few
+requests for it, I thought I'd make it easier for people to find and work
+with. That said, I present you...
+
+## DBReplicate
+
+I wrote a Perl program to help my company migrate from Interbase to PostgreSQL
+by extracting a database's data and metadata and dumping it as a set of SQL
+commands (similar to pg_dump or mysqldump).
+
+I wrote the program originally to do a row-level backup of our Interbase
+databases. We had a few that were corrupted, and the standard tools were
+unable to extract data from them without segfaulting, so I came up with this
+to scavenge as much information as possible from the failing databases.
+Recently, I convinced my company to dump Interbase in favor of PostgreSQL
+(yay!), but we host about 20 websites, each with databases in the hundreds of
+thousands of rows, and we weren't looking forward to the data transfer at all.
+I happened to remember this program, made a few modifications, and came up
+with something that Works Good Enough For Now.
+
+* Full exporting of all data and metadata in a database.
+
+* A rudimentary mechanism for re-writing datatype names (a simple one-way Perl
+  hash). Support for converting Interbase auto-incremement triggers to
+  PostgreSQL SERIAL fields, including setting the current value at the end of
+  the process.
+
+* Basic generator re-writing
